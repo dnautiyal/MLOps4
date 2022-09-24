@@ -2,10 +2,11 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "face-sentiment"
+stack_name = "Deepak-face-sentiment"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-pcatkpeq1n2w"
-s3_prefix = "face-sentiment"
+s3_prefix = "Deepak-face-sentiment"
 region = "us-east-1"
 capabilities = "CAPABILITY_IAM"
-image_repositories = ["FaceSentimentFunction=681261969843.dkr.ecr.us-east-1.amazonaws.com/facesentiment02552640/facesentimentfunctionb509da23repo"]
+image_repositories = ["DeepakFaceSentimentFunction=681261969843.dkr.ecr.us-east-1.amazonaws.com/deepakfacesentiment4f56d0f8/deepakfacesentimentfunctionb47b2a36repo"]
 disable_rollback = true
+confirm_changeset = true

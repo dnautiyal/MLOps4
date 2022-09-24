@@ -24,16 +24,25 @@ class Sentiment():
         #The max pooling layer should have a 2x2 window.
         #The dropout layer should have a 0.25 dropout rate
         ### CODE GOES HERE
+        model.add(Conv2D(32, kernel_size=(3,3), activation='relu', input_shape=(48,48,1)))
+        model.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
+        model.add(Dropout(0.25))
+
 
         #The next convolutional block should have:
         #Convolutional layer (128 3x3 filters with relu)
         #Max pooling layer with 2x2 window
         ### CODE GOES HERE
-
+        model.add(Conv2D(128, kernel_size=(3,3), activation='relu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
+    
         #The next convolutional block has the same structure as the previous one:
         #Convolutional layer (128 3x3 filters with relu)
         #Max pooling layer with 2x2 window
         ### CODE GOES HERE
+        model.add(Conv2D(128, kernel_size=(3,3), activation='relu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
 
         #The final block of the model has:
         #Dropout layer with 0.25 dropout rate
@@ -42,10 +51,17 @@ class Sentiment():
         #Dropout layer with 0.5 dropout rate
         #Final Dense layer with 7 neurons with softmax activation
         ### CODE GOES HERE
+        model.add(Dropout(0.25))
+        model.add(Flatten())
+        model.add(Dense(1024, activation = 'relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(7, activation='softmax'))
 
         #We already created the model, we only need to load the weights.
         #https://www.tensorflow.org/tutorials/keras/save_and_load
         ### CODE GOES HERE
+        model.built = True
+        model.load_weights(emotion_model_path)
 
         #Save the model as a internal class variable
         self.emotion_model=model
@@ -56,7 +72,7 @@ class Sentiment():
         #The face detection model is already implemented in opencv:
         #https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html
         #Pretrained models: https://github.com/opencv/opencv/tree/3.4/data/haarcascades
-        self.face_model = ### CODE GOES HERE
+        self.face_model = cv2.CascadeClassifier(face_model_path)### CODE GOES HERE
 
     def predict(self,frame):
         """
@@ -77,21 +93,22 @@ class Sentiment():
             cv2.rectangle(frame, (x, y-50), (x+w, y+h+10), (255, 0, 0), 2)
 
             #We use slicing to extract the portion of the image inside the bounding box
-            roi_gray = ### CODE GOES HERE
+            roi_gray = gray[y:y+h, x:x+w] ### CODE GOES HERE
 
             #We resize the image to a size of (48,48) which is the input of the model
-            resized_roi = ### CODE GOES HERE
+            resized_roi = cv2.resize(roi_gray, (48,48))### CODE GOES HERE
 
             #We need to add a batch dimension and a channel dimension
             #The input to the model should have shape (1,48,48,1)
-            cropped_img = ### CODE GOES HERE
-
+            # cropped_img = resized_roi.resize(1,48,48,1)### CODE GOES HERE
+            cropped_img = np.expand_dims(resized_roi, axis=0)
+            
             #We run the emotion detection model and get the softmax output
-            prediction = ### CODE GOES HERE
+            prediction = self.emotion_model.predict(cropped_img)### CODE GOES HERE
 
             #We get the name of the emotion from the model's output
-            maxindex = ### CODE GOES HERE
-            emotion = ### CODE GOES HERE
+            maxindex = np.argmax(prediction)### CODE GOES HERE
+            emotion = self.emotion_dict[maxindex]### CODE GOES HERE
 
             #We add the emotion text to the bounding box
             #https://docs.opencv.org/4.x/dc/da5/tutorial_py_drawing_functions.html
