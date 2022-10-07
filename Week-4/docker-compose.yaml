@@ -19,6 +19,8 @@ services:
   
   main-service:
     build: .
+    port:
+      - 8000:8000
     depends_on:
       - face-bokeh-service
       - face-emotion-service
