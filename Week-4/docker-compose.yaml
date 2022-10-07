@@ -19,7 +19,7 @@ services:
   
   main-service:
     build: .
-    port:
+    ports:
       - 8000:8000
     depends_on:
       - face-bokeh-service

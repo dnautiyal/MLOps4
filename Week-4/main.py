@@ -14,4 +14,4 @@ app = FastAPI(title='FastAPI Main', root_path="/Prod/")
 async def root():
     response_face_bokeh = requests.get("http://face-bokeh-service:8000/")
     response_face_emotion = requests.get("http://face-emotion-service:8000/")
-    return {'message':'OK'}
+    return [response_face_bokeh.content, response_face_emotion.content]
