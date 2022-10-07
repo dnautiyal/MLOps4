@@ -1,3 +1,29 @@
+version: '3'
 #Direct the main healthcheck to port 8000
 #Direct the face-bokeh to port 8001
 #Direct the face-emotion to port 8002
+services:
+  face-bokeh-service:
+    build: ./face-bokeh
+    ports:
+      - 8001:8000
+    platform: linux/amd64
+
+    
+  face-emotion-service:
+    build: ./face-emotion
+    ports:
+      - 8002:8000
+    platform: linux/amd64
+
+  
+  main-service:
+    build: .
+    depends_on:
+      - face-bokeh-service
+      - face-emotion-service
+    platform: linux/amd64
+
+
+  
+  

@@ -33,4 +33,4 @@ async def sentiment(file: UploadFile = File(...)):
 
 @app.get("/", tags=["Health Check"])
 async def root():
-    return {"message": "Ok"}
+    return {"face-emotion": "Ok"}
