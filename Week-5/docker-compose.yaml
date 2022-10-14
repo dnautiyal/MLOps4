@@ -25,3 +25,8 @@ services:
       - face-bokeh-service
       - face-emotion-service
     platform: linux/amd64
+
+  triton-container:
+    image: nvcr.io/nvidia/tritonserver:22.06-py3
+    ports:
+      - 8003:8000

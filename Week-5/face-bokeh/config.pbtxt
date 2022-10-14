@@ -1,3 +1,4 @@
+name: "DeepLabModel"
 platform: "tensorflow_graphdef"
 input[
     {
