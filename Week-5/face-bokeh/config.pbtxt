@@ -1,4 +1,4 @@
-name: "DeepLabModel"
+name: "face-bokeh"
 platform: "tensorflow_graphdef"
 input[
     {
