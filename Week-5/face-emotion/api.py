@@ -16,7 +16,7 @@ model = Sentiment(face_model_path, triton_url=triton_url_path)
 # Let's generate a new FastAPI app
 # Generate a FastAPI instance called `app` with the title 'Face-Emotion'
 # https://fastapi.tiangolo.com/
-app = FastAPI('Face-Emotion')
+app = FastAPI(title='Face-Emotion')
 
 
 #The face-sentiment endpoint receives post requests with the image and returns the transformed image
