@@ -1,3 +1,4 @@
+name: "face-emotion"
 platform: "tensorflow_savedmodel"
 input[
     {
