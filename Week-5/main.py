@@ -5,7 +5,7 @@ import requests
 # Let's generate a new FastAPI app
 # Generate a FastAPI instance called `app` with the title 'Triton Health Check'
 # https://fastapi.tiangolo.com/
-app = FastAPI(title='Triton Health Check', root_path="/Prod/")
+app = FastAPI(title='Triton Health Check')
 
 
 
