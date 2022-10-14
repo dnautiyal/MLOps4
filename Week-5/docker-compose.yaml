@@ -27,6 +27,9 @@ services:
     platform: linux/amd64
 
   triton-container:
+    env_file:
+      .aws.env
     image: nvcr.io/nvidia/tritonserver:22.06-py3
+    command: ["tritonserver", "--model-repository=s3://deepak-mlops4-dev/week-5/models/"]
     ports:
       - 8003:8000
