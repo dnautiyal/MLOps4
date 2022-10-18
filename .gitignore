@@ -131,3 +131,4 @@ dmypy.json
 # PEM file
 .pem
 deepak-mlops4-key.pem
+/data
