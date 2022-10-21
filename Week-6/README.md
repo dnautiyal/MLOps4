@@ -82,4 +82,4 @@ aws s3 cp pet-bokeh/config.pbtxt s3://deepak-mlops4-dev/week-6/models/pet-bokeh/
 
 - Add triton to the `docker-compose.yaml` with image, env file, ports and command.
 - Run all the endpoints and triton server (`docker-compose -f docker-compose.yaml up --build`)
-- Create a request with docs (<http://ec2.ip.address:8000/docs>)
+- Create a request with docs (<http://ec2.ip.address:8002/docs>)
