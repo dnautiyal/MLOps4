@@ -69,13 +69,13 @@ tar -xzf annotations.tar.gz
 - Upload the model to the s3 model repository
 
 ```
-aws s3 cp --recursive segmentation s3://triton-repository/models/pet-bokeh/1/model.savedmodel/
+aws s3 cp --recursive segmentation s3://deepak-mlops4-dev/week-6/models/pet-bokeh/1/model.savedmodel/
 ```
 
 - Upload the config
 
 ```
-aws s3 cp pet-bokeh/config.pbtxt s3://triton-repository/models/pet-bokeh/config.pbtxt
+aws s3 cp pet-bokeh/config.pbtxt s3://deepak-mlops4-dev/week-6/models/pet-bokeh/config.pbtxt
 ```
 
 # Docker Compose
