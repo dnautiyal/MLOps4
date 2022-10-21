@@ -10,8 +10,6 @@ import mlflow.keras
 # Add mlflow logging
 mlflow.autolog()
 
-
-
 input_dir = os.path.join("data","images")
 target_dir = os.path.join(os.path.join("data","annotations"), 'trimaps')
 img_size = (160, 160)
