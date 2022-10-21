@@ -51,8 +51,8 @@ model.compile(optimizer="rmsprop", loss="sparse_categorical_crossentropy")
 callbacks = keras.callbacks.ModelCheckpoint(
     filepath='./model-checkpoint',
     save_weights_only=True,
-    monitor='val_accuracy',
-    mode='max',
+    monitor='val_loss',
+    mode='min',
     save_best_only=True)
 
 # Train the model, doing validation at the end of each epoch.
