@@ -8,12 +8,12 @@ import mlflow
 import mlflow.keras
 
 # Add mlflow logging
-mlflow.start_run()
+mlflow.autolog()
 
 
 
 input_dir = os.path.join("data","images")
-target_dir = os.path.join("data","annotations")
+target_dir = os.path.join(os.path.join("data","annotations"), 'trimaps')
 img_size = (160, 160)
 num_classes = 3
 batch_size = 32
