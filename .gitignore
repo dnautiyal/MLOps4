@@ -132,3 +132,5 @@ dmypy.json
 .pem
 deepak-mlops4-key.pem
 /data
+/models
+*.pt
