@@ -16,7 +16,8 @@ By the end of this session, you will be able to:
 
 ## 📦 Deliverables
 
-- A screenshot of kubectl dashboard
+- A screenshot of `docker ps`
+- A screenshot of `minikube dashboard`
 - A screenshot of your deployment
 
 
@@ -54,8 +55,8 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 ```
 
-- Start a minikube cluster
-- Set an alias for kubectl
+- Start a minikube cluster (`minikube start`)
+- Set an alias for kubectl (`alias kubectl="minikube kubectl --"`)
 - For triton we need to add the credentials as secrets
 
 ```
@@ -64,8 +65,8 @@ kubectl create secret generic aws-env --from-literal='AWS_ACCESS_KEY_ID=YOUR_ACC
 
 ### Locally built images
 
-- Use minikube's docker
-- Pull the triton image
+- Use minikube's docker (`eval $(minikube docker-env)`)
+- Pull the triton image (`docker pull nvcr.io/nvidia/tritonserver:22.06-py3`)
 - Build all the docker images
 
 ```
@@ -74,13 +75,29 @@ docker build -t face-emotion face-emotion/
 docker build -t pet-bokeh pet-bokeh/
 ```
 
-- Load all the kubernetes resources
+- Load all the kubernetes resources (`kubectl apply -f K8s/`)
 - Forward the main port (`kubectl port-forward svc/main 8004:8004 --address 0.0.0.0`)
 
 ### Pulling from ECR
 
-- Configure credentials
-- Enable the addon
+- Configure credentials (`minikube addons configure registry-creds`)
+- Enable the addon (`minikube addons enable registry-creds`)
 - Edit K8s/ECR/*.yaml to use your ECRs
-- Load all the kubernetes resources
+- now run the following command to push the docker images to ECR
+    - docker tag pet-bokeh:latest public.ecr.aws/d4e8a7g0/deepak-pet-bokeh/pet-bokeh:latest
+    - docker push public.ecr.aws/d4e8a7g0/deepak-pet-bokeh/pet-bokeh:latest
+    - docker tag face-emotion:latest public.ecr.aws/d4e8a7g0/deepak-face-emotion:latest
+    - docker push public.ecr.aws/d4e8a7g0/deepak-face-emotion:latest
+    - docker tag main:latest public.ecr.aws/d4e8a7g0/deepak-main:latest
+    - docker push public.ecr.aws/d4e8a7g0/deepak-main:latest
+
+- Load all the kubernetes resources (`kubectl apply -f K8s/`)
 - Forward the main port (`kubectl port-forward svc/main 8004:8004 --address 0.0.0.0`)
+
+### Start a Kubernetes Dashboard
+- minikube dashboard --url
+- kubectl proxy --address='0.0.0.0' --disable-filter=true --port 8001
+- then whatever url you get change the ip to your ec2 box public ip, and port to 8000
+  - for example http://54.89.188.194:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+
+
