@@ -8,4 +8,4 @@ spec:
   - to:
     - operation:
         methods: ["GET","POST"]
-        paths: =['/v1/models/*'] #FILL IN
+        paths: ["/v1/models/*"] #FILL IN
