@@ -18,12 +18,12 @@ spec:
       containers:
       - args:
         - --port=9000
-        - --rest_api_port=#FILL IN
+        - --rest_api_port=8500 #FILL IN
         - --model_name=pet-bokeh
-        - --model_base_path=#FILL IN
+        - --model_base_path=/models #FILL IN
         command:
         - /usr/bin/tensorflow_model_server
-        image: #FILL IN
+        image: tensorflow/serving:2.11.0-rc2 #FILL IN
         imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 30
@@ -33,7 +33,7 @@ spec:
         name: pet-bokeh
         ports:
         - containerPort: 9000
-        - containerPort: #FILL IN
+        - containerPort: 8500 #FILL IN
         volumeMounts:
         - mountPath: /models
           name: model-serve-storage

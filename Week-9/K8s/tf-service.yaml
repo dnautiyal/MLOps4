@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
   - name: http-tf-serving
-    port: #FILL IN
-    targetPort: #FILL IN
+    port: 8500
+    targetPort: 8500
     nodePort: 31000
   - name: grpc-tf-serving
     port: 9000

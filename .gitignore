@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # PEM file
-.pem
+*.pem
 deepak-mlops4-key.pem
 /data
 /models
